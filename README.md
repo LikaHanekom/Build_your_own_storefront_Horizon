@@ -1,3 +1,70 @@
+# Assignment 1 Build Your Own Storefront-Part 1
+
+**Note:** This project was migrated from the Dawn theme to the Horizon
+theme per lecturer instruction. Horizon uses Shopify's newer theme
+blocks architecture (see the `blocks/` folder) rather than Dawn's
+section-only structure.
+
+Niche: Specialty coffee — single-origin and small-batch roasts.
+Coffee products naturally support multiple variant dimensions — roast level (light/medium/dark), grind type (whole bean, drip, espresso, French press), and bag size (250g/500g/1kg). That's enough to build real variant-driven filtering. It also supports rich metafields per product: origin country, farm/producer, altitude, processing method (washed, natural, honey), and tasting notes — good material for structured content later in the week.
+
+Target audience:
+Our customers are home brewing enthusiasts in their late 20s to 40s who care about origin transparency and are willing to pay a premium for traceable, small-batch coffee. They're comfortable ordering coffee online on a recurring basis and want detailed sourcing information before they buy.
+
+3 custom pages + Metaobject needs:
+- Origin/Farm Profiles — one page per producer/farm, built from a farm_profile Metaobject (fields: farm name, country, altitude, story, photo).
+- Brew Guides — a page per brew method, using a brew_guide Metaobject (fields: method name, equipment, ratio, steps).
+- Subscription/How It Works — explains the coffee subscription model, could use a faq_item Metaobject for repeat-question content.
+
+## Dev Environment
+
+Store: the-roast-office.myshopify.com
+Theme base: Horizon (migrated from Dawn)
+Local project repo: LikaHanekom/Build_your_own_storefront_Horizon
+
+Hot-reloading confirmed: verified by editing layout/theme.liquid, adding
+a temporary <h1>TEST</h1> tag, and observing the local preview
+(http://127.0.0.1:9292) auto-refresh with the change.
+
+## Stretch Goal A — GitHub Integration via Admin
+
+Connected the `main` branch of my personal GitHub repository
+(LikaHanekom/Build_your_own_storefront_Horizon) to the store's theme via
+Online Store > Themes > Import > Connect from GitHub.
+
+**CLI vs. Theme Editor with GitHub sync active:**
+When a theme is connected to a GitHub branch, changes made locally via
+the CLI (editing files in VS Code, then `git commit` + `git push`) sync
+to Shopify automatically once pushed to the connected branch — GitHub
+becomes the source of truth. Changes made directly in the Shopify Theme
+Editor, however, are not automatically pushed back to GitHub. They stay
+live on the theme but only exist in Shopify's system until someone
+manually pulls them into the repo, or they get overwritten by the next
+GitHub push. This means Theme Editor edits can silently be lost if a
+developer later pushes local changes without reconciling them first —
+so teams using GitHub sync typically treat the Theme Editor as
+read-only/preview during active development and route all real changes
+through git.
+
+## Stretch Goal B — VS Code Configuration
+
+Installed the official Shopify Liquid VS Code extension and configured
+`.vscode/settings.json` to auto-format Liquid files on save:
+
+\`\`\`json
+{
+  "editor.defaultFormatter": "Shopify.theme-check-vscode",
+  "[liquid]": {
+    "editor.defaultFormatter": "Shopify.theme-check-vscode"
+  },
+  "editor.formatOnSave": true
+}
+\`\`\`
+
+This scopes the formatter specifically to the `liquid` language and
+enables format-on-save globally, so `.liquid` files are auto-corrected
+by Shopify's official Theme Check formatter every time they're saved.
+
 # Horizon
 
 [Getting started](#getting-started) |
