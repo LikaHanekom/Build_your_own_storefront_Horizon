@@ -181,6 +181,31 @@
   additional_blocks: additional_blocks
 %}
 
+<div class="product-summary-block">
+  {% if product.featured_image %}
+    <img
+      src="{{ product.featured_image | image_url: width: 600 }}"
+      alt="{{ product.featured_image.alt | escape }}"
+      loading="lazy"
+      width="600"
+    >
+  {% endif %}
+
+  <p class="product-summary-block__description">
+    {{ product.description | strip_html | truncate: 150 }}
+  </p>
+
+  {% if product.available %}
+    <p class="product-summary-block__availability product-summary-block__availability--in-stock">
+      In Stock
+    </p>
+  {% else %}
+    <p class="product-summary-block__availability product-summary-block__availability--out-of-stock">
+      Out of Stock
+    </p>
+  {% endif %}
+</div>
+
 {% stylesheet %}
   .sticky-add-to-cart__bar {
     position: fixed;
