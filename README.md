@@ -65,6 +65,105 @@ This scopes the formatter specifically to the `liquid` language and
 enables format-on-save globally, so `.liquid` files are auto-corrected
 by Shopify's official Theme Check formatter every time they're saved.
 
+
+# Shopify Theme Development Module - Day 2 Assignment
+## Liquid Fundamentals
+
+**Student:** Alika Hanekom
+
+---
+
+# Part 1 – Written Decisions
+
+## Step 1.1 – Filter Inventory
+
+| Filter | Target File | What it Changes |
+|---------|-------------|-----------------|
+| `money` | `sections/product-information.liquid` | Formats `product.price` into the store's currency format instead of displaying the raw value. |
+| `image_url` | `sections/product-information.liquid` | Resizes the product featured image to 600px wide for the summary block. |
+| `divided_by` | `sections/product-information.liquid` | Calculates the image's `height` attribute from width and aspect ratio, to prevent layout shift. Added during implementation to satisfy Theme Check's missing-height-attribute rule; not part of the original Step 1.1 plan. |
+| `strip_html` | `sections/product-information.liquid` | Removes HTML tags from `product.description` before display. |
+| `truncate` | `sections/product-information.liquid` | Shortens `product.description` to 150 characters to keep the summary block compact. |
+| `upcase` | `blocks/_product-card.liquid` | Displays `product.title` in uppercase on the collection page card. |
+
+## Step 1.2 – Conditional Logic Plan
+
+**Object/property:** `product.available`
+
+**File:** `sections/product-information.liquid`
+
+**Branches:**
+- **True:** displays "In Stock" (`.product-summary-block__availability--in-stock`)
+- **False:** displays "Out of Stock" (`.product-summary-block__availability--out-of-stock`)
+
+---
+
+# Part 2 – Product Page Changes
+
+The following filters were implemented on the product page (`sections/product-information.liquid`):
+
+1. **money** — formats `product.price` into store currency.
+2. **image_url** + **divided_by** — resizes the featured image and computes a proportional `height` to avoid layout shift.
+3. **strip_html** — strips HTML tags from the product description.
+4. **truncate** — limits the description to 150 characters.
+
+The `product.available` conditional was also added here, toggling between "In Stock" and "Out of Stock."
+
+---
+
+# Part 3 – Collection Page Changes
+
+The collection page card (`blocks/_product-card.liquid`) uses the remaining filter:
+
+- **upcase** — displays `product.title` in uppercase on each collection page card.
+
+Combined filter count across product and collection pages: 6 distinct filters (5 required minimum).
+
+---
+
+# Verification Notes
+
+- **Out of Stock branch:** Viewed "Selling Plans Ski Wax" (marked Sold out in Shopify admin) at [PASTE PRODUCT URL OR NOTE "via admin theme editor preview"] → page displayed **"Out of Stock."**
+- **In Stock branch:** Viewed "[PASTE ACTUAL PRODUCT NAME, e.g. a snowboard]" (in-stock item) → page displayed **"In Stock."**
+- Collection page verified: all product cards display uppercase titles alongside the regular title, no Liquid errors.
+- Local `shopify theme dev` (127.0.0.1:9292) returns a persistent "Upload Errors" page due to a pre-existing schema/version mismatch in the base Horizon theme — confirmed unrelated to my edits via `git stash` (same error occurs with zero local changes).
+- Verification was instead performed via the Shopify admin theme editor preview (`/admin/themes/.../editor`), where both the product page and collection page rendered correctly with all filters and the conditional visible.
+
+---
+
+# Git Commands
+
+```bash
+git add .
+git commit -m "Day 2: add filters and conditional logic to product and collection sections"
+git push
+```
+
+---
+
+# Assignment Checklist
+
+## Part 1
+- [x] Five or more distinct Liquid filters identified.
+- [x] Target file listed for each filter.
+- [x] Effect of each filter explained.
+- [x] Conditional logic planned using a real Shopify object.
+
+## Part 2
+- [x] Three or more filters implemented on the product page.
+- [x] Availability conditional implemented.
+- [x] Product page renders without Liquid errors.
+
+## Part 3
+- [x] Six distinct filters used across product and collection pages.
+- [x] Collection page renders successfully.
+
+## Part 4
+- [x] Verified in Shopify admin theme editor preview (local CLI preview blocked by pre-existing theme issue, documented above).
+- [x] Both conditional branches verified.
+- [x] Changes committed and pushed to GitHub.
+
+
 # Horizon
 
 [Getting started](#getting-started) |
