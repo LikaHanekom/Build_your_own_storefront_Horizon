@@ -11,6 +11,9 @@
 {% endcapture %}
 
 {% render 'product-card', children: children, product: product, product_view_context: product_view_context %}
+  <p class="product-card__custom-title">
+    {{ product.title | upcase }}
+  </p>
 {% render 'quantity-selector-styles' %}
 {% render 'buy-buttons-styles' %}
 {% render 'gift-card-recipient-form-styles' %}
