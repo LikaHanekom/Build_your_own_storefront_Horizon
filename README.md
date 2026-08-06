@@ -204,6 +204,14 @@ Combined settings total: **5** (4+ required).
 
 ---
 
+
+
+- Verified via the Shopify admin theme editor. Added Origin Spotlight section to the homepage with one Origin Stat, one Origin Quote, and one Origin CTA block. Confirmed heading and background image render; confirmed stat label/value, quote text, and attribution display; toggled cta_style between solid and outline and confirmed the button's CSS class and appearance changed.
+
+
+
+- All four schemas (origin-spotlight.liquid, origin-stat.liquid, origin-quote.liquid, origin-cta.liquid) were validated in the Shopify Code Editor with zero errors, using t: translation keys defined in locales/en.default.schema.json.
+
 # Horizon
 
 [Getting started](#getting-started) |
