@@ -1,0 +1,48 @@
+<div class="origin-cta" {{ block.shopify_attributes }}>
+  {% if block.settings.cta_label != blank and block.settings.cta_link != blank %}
+    href="{{ block.settings.cta_link }}" class="origin-cta__button origin-cta__button--{{ block.settings.cta_style }}" >
+    {{ block.settings.cta_label }}
+    </a>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:names.origin_cta",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:settings.origin_cta_label",
+      "default": "Shop this origin"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "t:settings.origin_cta_link"
+    },
+    {
+      "type": "select",
+      "id": "cta_style",
+      "label": "t:settings.origin_cta_style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "t:options.solid"
+        },
+        {
+          "value": "outline",
+          "label": "t:options.outline"
+        }
+      ],
+      "default": "solid"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.origin_cta"
+    }
+  ]
+}
+{% endschema %}

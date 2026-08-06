@@ -1,0 +1,34 @@
+<div class="origin-stat" {{ block.shopify_attributes }}>
+  {% if block.settings.stat_label != blank %}
+    <span class="origin-stat__label">{{ block.settings.stat_label }}</span>
+  {% endif %}
+  {% if block.settings.stat_value != blank %}
+    <span class="origin-stat__value">{{ block.settings.stat_value }}</span>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:names.origin_stat",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "stat_label",
+      "label": "t:settings.origin_stat_label",
+      "default": "Altitude"
+    },
+    {
+      "type": "text",
+      "id": "stat_value",
+      "label": "t:settings.origin_stat_value",
+      "default": "1,800m"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.origin_stat"
+    }
+  ]
+}
+{% endschema %}

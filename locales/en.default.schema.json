@@ -348,6 +348,7 @@
     "menu": "Menu",
     "multicolumn": "Multicolumn",
     "rich_text_section": "Rich text",
+    "origin_cta": "Origin CTA",
     "page": "Page",
     // Theme block name for main page body content
     "page_content": "Content",
@@ -418,7 +419,10 @@
     "view_all_button": "View all",
     "disclosures": "Disclosures",
     "pills": "Pills",
-    "comparison_slider": "Comparison slider"
+    "comparison_slider": "Comparison slider",
+    "origin_spotlight": "Origin Spotlight",
+    "origin_stat": "Origin Stat",
+    "origin_quote": "Origin Quote",
   },
   "options": {
     "above_carousel": "Above carousel",
@@ -773,6 +777,8 @@
     "border_opacity": "Border opacity",
     "border_radius": "Corner radius",
     "border_style": "Border style",
+    "origin_spotlight_heading": "Heading",
+    "origin_spotlight_background_image": "Background image",
     "border_thickness": "Border thickness",
     "border_width": "Border thickness",
     "borders": "Borders",
@@ -972,6 +978,14 @@
     "overlay_color": "Overlay color",
     "overlay_opacity": "Overlay opacity",
     "overlay_style": "Overlay style",
+    "origin_stat_label": "Stat label",
+    "origin_stat_value": "Stat value",
+    "origin_quote_text": "Quote",
+    "origin_quote_attribution_name": "Attribution name",
+    "origin_quote_attribution_farm": "Attribution farm",
+    "origin_cta_label": "Button label",
+    "origin_cta_link": "Button link",
+    "origin_cta_style": "Button style",
     "padding": "Padding",
     "padding_bottom": "Padding bottom",
     "padding_horizontal": "Padding horizontal",
@@ -1036,7 +1050,9 @@
       "heading_preset": "Heading",
       "description_preset": "Description",
       "input_preset": "Input",
-      "checkbox_preset": "Checkbox label"
+      "checkbox_preset": "Checkbox label",
+      "origin_spotlight_heading": "Heading",
+      "origin_spotlight_background_image": "Background image"
     },
     // Checkbox setting to enable quick add to cart from product cards
     "quick_add": "Quick add",

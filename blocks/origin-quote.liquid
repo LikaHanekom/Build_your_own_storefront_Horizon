@@ -1,0 +1,48 @@
+<div class="origin-quote" {{ block.shopify_attributes }}>
+  {% if block.settings.quote_text != blank %}
+    <blockquote class="origin-quote__text">
+      {{ block.settings.quote_text }}
+    </blockquote>
+  {% endif %}
+
+  {% if block.settings.attribution_name != blank %}
+    <cite class="origin-quote__attribution">
+      {{ block.settings.attribution_name }}
+      {%- if block.settings.attribution_farm != blank -%}
+        , {{ block.settings.attribution_farm }}
+      {%- endif -%}
+    </cite>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:names.origin_quote",
+  "tag": null,
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "quote_text",
+      "label": "t:settings.origin_quote_text",
+      "default": "<p>Every harvest tells a story.</p>"
+    },
+    {
+      "type": "text",
+      "id": "attribution_name",
+      "label": "t:settings.origin_quote_attribution_name",
+      "default": "Maria Gonzalez"
+    },
+    {
+      "type": "text",
+      "id": "attribution_farm",
+      "label": "t:settings.origin_quote_attribution_farm",
+      "default": "Finca El Mirador"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.origin_quote"
+    }
+  ]
+}
+{% endschema %}

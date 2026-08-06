@@ -164,6 +164,46 @@ git push
 - [x] Changes committed and pushed to GitHub.
 
 
+---
+
+# Shopify Theme Development Module - Day 3 Assignment
+## Sections, Blocks & Schema
+
+
+---
+
+# Part 1 – Written Decisions
+
+## Step 1.1 – Section Concept
+
+**Name:** Origin Spotlight
+**File:** `sections/origin-spotlight.liquid`
+**Page:** Homepage (default)
+
+**Purpose:** Lets a merchant build a homepage story block around a single coffee origin/farm — combining a hero-style intro (heading + background image) with a flexible mix of content blocks (stats, a pull-quote from the farmer, and a CTA button) — without needing a developer to hand-code each new farm feature. This is an original concept, distinct from Horizon's existing "Featured collection," "Rich text," or "Image with text" sections.
+
+## Step 1.2 – Block Inventory
+
+| Block Type | Filename | Represents | Reusable Elsewhere? |
+|---|---|---|---|
+| `origin-stat` | `blocks/origin-stat.liquid` | A single stat callout (label + value pair), e.g. "Altitude: 1,800m" | Could be reused on a future Farm Profile page |
+| `origin-quote` | `blocks/origin-quote.liquid` | A pull-quote attributed to the farmer/producer, with name and farm name | Specific to storytelling sections like this one |
+| `origin-cta` | `blocks/origin-cta.liquid` | A button with configurable label, link, and style | Reusable generic CTA pattern |
+
+## Step 1.3 – Settings Plan
+
+| Setting ID | Type | File | Visible Effect |
+|---|---|---|---|
+| `heading` | `text` | `sections/origin-spotlight.liquid` | Sets the section's main heading text (e.g. the origin/farm name) |
+| `background_image` | `image_picker` | `sections/origin-spotlight.liquid` | Sets the background/hero image behind the section |
+| `stat_value` | `text` | `blocks/origin-stat.liquid` | Sets the number/value shown in a stat block (e.g. "1,800m") |
+| `quote_text` | `richtext` | `blocks/origin-quote.liquid` | Sets the quote content displayed in the pull-quote block |
+| `cta_style` | `select` (`solid` / `outline`) | `blocks/origin-cta.liquid` | Swaps the button's CSS class between a solid-filled and outline style |
+
+Combined settings total: **5** (4+ required).
+
+---
+
 # Horizon
 
 [Getting started](#getting-started) |
