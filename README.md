@@ -212,6 +212,36 @@ Combined settings total: **5** (4+ required).
 
 - All four schemas (origin-spotlight.liquid, origin-stat.liquid, origin-quote.liquid, origin-cta.liquid) were validated in the Shopify Code Editor with zero errors, using t: translation keys defined in locales/en.default.schema.json.
 
+## Stretch A 
+
+— Conditional Settings: blocks/origin-cta.liquid has a subtext text field that only appears in the editor when show_subtext (a checkbox) is enabled, via visible_if. This lets merchants add optional supporting text under the CTA button without cluttering the settings panel when it's not needed.
+
+### Stretch B — Translation Pass
+
+All schema-facing strings (section/block names, setting labels, categories) were already implemented using `t:` keys during Part 2 and Part 3, rather than left as plain strings. Keys added to `locales/en.default.schema.json`:
+
+**names:**
+- `origin_spotlight`
+- `origin_stat`
+- `origin_quote`
+- `origin_cta`
+
+**settings:**
+- `origin_spotlight_heading`
+- `origin_spotlight_background_image`
+- `origin_stat_label`
+- `origin_stat_value`
+- `origin_quote_text`
+- `origin_quote_attribution_name`
+- `origin_quote_attribution_farm`
+- `origin_cta_label`
+- `origin_cta_link`
+- `origin_cta_style`
+- `origin_cta_show_subtext`
+- `origin_cta_subtext`
+
+All labels use sentence case (e.g. "Attribution name", not "Attribution Name" or "attribution name"), consistent with the existing conventions in `en.default.schema.json`.
+
 # Horizon
 
 [Getting started](#getting-started) |

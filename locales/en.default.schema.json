@@ -986,6 +986,8 @@
     "origin_cta_label": "Button label",
     "origin_cta_link": "Button link",
     "origin_cta_style": "Button style",
+    "origin_cta_show_subtext": "Show subtext",
+    "origin_cta_subtext": "Subtext",
     "padding": "Padding",
     "padding_bottom": "Padding bottom",
     "padding_horizontal": "Padding horizontal",

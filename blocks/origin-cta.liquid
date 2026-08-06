@@ -4,6 +4,10 @@
     {{ block.settings.cta_label }}
     </a>
   {% endif %}
+
+  {% if block.settings.show_subtext and block.settings.subtext != blank %}
+    <p class="origin-cta__subtext">{{ block.settings.subtext }}</p>
+  {% endif %}
 </div>
 
 {% schema %}
@@ -27,22 +31,24 @@
       "id": "cta_style",
       "label": "t:settings.origin_cta_style",
       "options": [
-        {
-          "value": "solid",
-          "label": "t:options.solid"
-        },
-        {
-          "value": "outline",
-          "label": "t:options.outline"
-        }
+        { "value": "solid", "label": "t:options.solid" },
+        { "value": "outline", "label": "t:options.outline" }
       ],
       "default": "solid"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_subtext",
+      "label": "t:settings.origin_cta_show_subtext",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "t:settings.origin_cta_subtext",
+      "visible_if": "{{ block.settings.show_subtext }}"
     }
   ],
-  "presets": [
-    {
-      "name": "t:names.origin_cta"
-    }
-  ]
+  "presets": [{ "name": "t:names.origin_cta" }]
 }
 {% endschema %}
