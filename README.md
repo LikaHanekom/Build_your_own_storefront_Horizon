@@ -269,6 +269,32 @@ All labels use sentence case (e.g. "Attribution name", not "Attribution Name" or
   - **Blank state:** if the metafield is empty, the block falls back to its existing manual `label`/`value` fields. If those are also empty, no altitude line renders at all.
 - **Metaobject renders in:** `blocks/origin-quote.liquid`, pulling the referenced `origin_profile` via `section.settings.product.metafields.custom.origin_profile.value`, and rendering `farm_name` and `harvest_notes` beneath the existing pull-quote.
   - **Blank state:** if no product is selected on the section, or no `origin_profile` reference exists on that product, the quote block renders exactly as it does today — attribution only, with no empty wrapper added.
+## Part 2 — Admin Definitions
+
+- **Product metafield:** created via Settings > Custom data > Products. Note: Shopify auto-prefixed the key, so the actual namespace.key is `custom.custom_altitude_meters` (not `custom.altitude_meters` as originally planned in Part 1). Type: Integer. Populated with a real value (`1750`) on the test product.
+- **Metaobject type:** `origin_profile` created via Content > Metaobjects, with fields `farm_name` (single line text) and `harvest_notes` (rich text).
+- **Metaobject entry:** one real entry created — "Finca Los Alpes" — with genuine harvest notes describing peak-ripeness harvest timing and tasting notes (citrus acidity, floral aroma). Status: Active.
+- **Reference metafield:** `custom.origin_profile`, type Metaobject reference, pointing at the `origin_profile` type. Assigned to the test product, linked to the "Finca Los Alpes" entry.
+
+## Part 3 — Integration Notes
+
+- **File modified:** `sections/origin-spotlight.liquid` — added a new `product` setting (id: `product`, label: "Featured product") so the section can be pointed at a specific product.
+- **Metafield rendering:** `blocks/origin-stat.liquid` checks `section.settings.product.metafields.custom.custom_altitude_meters`. If present, it renders the altitude as the stat (e.g. "Altitude — 1750m"). If blank, it falls back to the block's original manual `stat_label` / `stat_value` settings, unchanged from Day 3.
+- **Metaobject rendering:** `blocks/origin-quote.liquid` checks `section.settings.product.metafields.custom.origin_profile.value`. If present, it renders the referenced `farm_name` and `harvest_notes` beneath the existing pull-quote. If blank, the block renders exactly as it did in Day 3 — no new markup, no empty wrapper.
+- Both blocks were edited in place; no new section or block file was created.
+
+## Part 4 — Verification Notes
+
+- Ran `shopify theme dev` and verified both states in the local preview at `http://127.0.0.1:9292`:
+  - **Populated state:** with the test product selected as "Featured product," the stat block correctly displayed the real altitude value, and the quote block correctly displayed "Finca Los Alpes" plus its harvest notes.
+  - **Blank state:** with a product that has no metafields set, the stat block fell back to its default label/value, and the quote block rendered identically to its Day 3 behavior — no empty wrapper or stray heading.
+- Zero Liquid errors related to `origin-spotlight`, `origin-stat`, or `origin-quote` in either state. (Unrelated pre-existing schema warnings appear elsewhere in the base theme — e.g. `variant-picker.liquid`, `header-menu.liquid` — but none involve the files touched in this assignment.)
+- Changes committed and pushed to the personal GitHub repo:
+  ```
+  git add .
+  git commit -m "Day 4: surface metafield and metaobject content in origin-spotlight"
+  git push
+  ```
 
 
 # Horizon
