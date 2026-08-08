@@ -1,9 +1,15 @@
 <div class="origin-stat" {{ block.shopify_attributes }}>
-  {% if block.settings.stat_label != blank %}
-    <span class="origin-stat__label">{{ block.settings.stat_label }}</span>
-  {% endif %}
-  {% if block.settings.stat_value != blank %}
-    <span class="origin-stat__value">{{ block.settings.stat_value }}</span>
+  {% assign altitude = section.settings.product.metafields.custom.custom_altitude_meters %}
+  {% if altitude != blank %}
+    <span class="origin-stat__label">Altitude</span>
+    <span class="origin-stat__value">{{ altitude }}m</span>
+  {% else %}
+    {% if block.settings.stat_label != blank %}
+      <span class="origin-stat__label">{{ block.settings.stat_label }}</span>
+    {% endif %}
+    {% if block.settings.stat_value != blank %}
+      <span class="origin-stat__value">{{ block.settings.stat_value }}</span>
+    {% endif %}
   {% endif %}
 </div>
 

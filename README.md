@@ -242,6 +242,35 @@ All schema-facing strings (section/block names, setting labels, categories) were
 
 All labels use sentence case (e.g. "Attribution name", not "Attribution Name" or "attribution name"), consistent with the existing conventions in `en.default.schema.json`.
 
+# Day 4 — Metafields & Metaobjects
+
+## Part 1 — Written Decisions
+
+### Step 1.1 — Metafield Plan
+
+- **Resource type:** Product
+- **Namespace.key:** `custom.altitude_meters`
+- **Type:** Number (integer)
+- **Storefront display:** The growing altitude in meters for the origin's featured coffee, shown as a stat line (e.g. "Altitude: 1,750m") inside `blocks/origin-stat.liquid`, replacing the block's manually-typed `value` field when a product is attached to the section.
+
+### Step 1.2 — Metaobject Plan
+
+- **Metaobject type:** `origin_profile`
+- **Fields:**
+  - `farm_name` — single line text
+  - `harvest_notes` — rich text
+- **Real-world content it represents:** A single origin/farm profile (farm name plus tasting and harvest notes) that is reusable across every product sourced from that farm, rather than data tied to one specific product.
+- **Reference method:** Products reach it through a metafield reference — `custom.origin_profile`, type "Metaobject reference" — following the same pattern `blocks/disclosures.liquid` already uses with `shopify.disclosure`.
+
+### Step 1.3 — Integration Plan
+
+- **Section change:** Add a `product` setting (type: `product`) to `sections/origin-spotlight.liquid`, so the section can be pointed at a specific featured product.
+- **Metafield renders in:** `blocks/origin-stat.liquid`, pulling `section.settings.product.metafields.custom.altitude_meters`.
+  - **Blank state:** if the metafield is empty, the block falls back to its existing manual `label`/`value` fields. If those are also empty, no altitude line renders at all.
+- **Metaobject renders in:** `blocks/origin-quote.liquid`, pulling the referenced `origin_profile` via `section.settings.product.metafields.custom.origin_profile.value`, and rendering `farm_name` and `harvest_notes` beneath the existing pull-quote.
+  - **Blank state:** if no product is selected on the section, or no `origin_profile` reference exists on that product, the quote block renders exactly as it does today — attribution only, with no empty wrapper added.
+
+
 # Horizon
 
 [Getting started](#getting-started) |

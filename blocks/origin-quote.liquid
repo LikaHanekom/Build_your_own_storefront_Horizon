@@ -13,6 +13,13 @@
       {%- endif -%}
     </cite>
   {% endif %}
+  {% assign origin_profile = section.settings.product.metafields.custom.origin_profile.value %}
+  {% if origin_profile != blank %}
+    <div class="origin-quote__profile">
+      <p class="origin-quote__farm-name">{{ origin_profile.farm_name }}</p>
+      <div class="origin-quote__harvest-notes">{{ origin_profile.harvest_notes | metafield_tag }}</div>
+    </div>
+  {% endif %}
 </div>
 
 {% schema %}

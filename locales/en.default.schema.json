@@ -988,6 +988,9 @@
     "origin_cta_style": "Button style",
     "origin_cta_show_subtext": "Show subtext",
     "origin_cta_subtext": "Subtext",
+    "origin_spotlight_product": "Featured product",
+    "origin_spotlight_product_info": "Powers the altitude stat and origin profile blocks with real product data",
+
     "padding": "Padding",
     "padding_bottom": "Padding bottom",
     "padding_horizontal": "Padding horizontal",
