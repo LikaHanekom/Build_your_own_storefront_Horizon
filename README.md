@@ -274,13 +274,13 @@ All labels use sentence case (e.g. "Attribution name", not "Attribution Name" or
 - **Product metafield:** created via Settings > Custom data > Products. Note: Shopify auto-prefixed the key, so the actual namespace.key is `custom.custom_altitude_meters` (not `custom.altitude_meters` as originally planned in Part 1). Type: Integer. Populated with a real value (`1750`) on the test product.
 - **Metaobject type:** `origin_profile` created via Content > Metaobjects, with fields `farm_name` (single line text) and `harvest_notes` (rich text).
 - **Metaobject entry:** one real entry created — "Finca Los Alpes" — with genuine harvest notes describing peak-ripeness harvest timing and tasting notes (citrus acidity, floral aroma). Status: Active.
-- **Reference metafield:** `custom.origin_profile`, type Metaobject reference, pointing at the `origin_profile` type. Assigned to the test product, linked to the "Finca Los Alpes" entry.
+- **Reference metafield:** created as `origin_profile_reference`; Shopify auto-prefixed the key, so the actual namespace.key is `custom.origin_profile_reference` (not `custom.origin_profile` as originally planned in Part 1). Type: Metaobject reference, pointing at the `origin_profile` type. Assigned to the test product, linked to the "Finca Los Alpes" entry.
 
 ## Part 3 — Integration Notes
 
 - **File modified:** `sections/origin-spotlight.liquid` — added a new `product` setting (id: `product`, label: "Featured product") so the section can be pointed at a specific product.
 - **Metafield rendering:** `blocks/origin-stat.liquid` checks `section.settings.product.metafields.custom.custom_altitude_meters`. If present, it renders the altitude as the stat (e.g. "Altitude — 1750m"). If blank, it falls back to the block's original manual `stat_label` / `stat_value` settings, unchanged from Day 3.
-- **Metaobject rendering:** `blocks/origin-quote.liquid` checks `section.settings.product.metafields.custom.origin_profile.value`. If present, it renders the referenced `farm_name` and `harvest_notes` beneath the existing pull-quote. If blank, the block renders exactly as it did in Day 3 — no new markup, no empty wrapper.
+- **Metaobject rendering:** `blocks/origin-quote.liquid` checks `section.settings.product.metafields.custom.origin_profile_reference.value`. If present, it renders the referenced `farm_name` and `harvest_notes` beneath the existing pull-quote. If blank, the block renders exactly as it did in Day 3 — no new markup, no empty wrapper.
 - Both blocks were edited in place; no new section or block file was created.
 
 ## Part 4 — Verification Notes
