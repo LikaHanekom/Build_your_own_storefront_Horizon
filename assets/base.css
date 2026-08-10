@@ -148,6 +148,9 @@ select {
     transform: scale(var(--hover-subtle-zoom-amount));
   }
 }
+.product-card__content .product-title {
+  text-transform: uppercase;
+}
 
 dialog {
   /* the ::backdrop inherits from the originating element, custom properties must be set on the dialog element */
