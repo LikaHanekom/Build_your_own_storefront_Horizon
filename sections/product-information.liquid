@@ -207,6 +207,27 @@
 </div>
 
 {% stylesheet %}
+  .product-summary-block {
+    max-width: 300px;
+    margin-top: var(--margin-lg);
+  }
+
+  .product-summary-block img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--style-border-radius-buttons-primary);
+  }
+
+  .product-summary-block__price {
+    font-weight: var(--font-weight-semibold);
+    margin-top: var(--margin-xs);
+  }
+
+  .product-summary-block__description {
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
+    font-size: var(--font-paragraph-small--size);
+  }
   .sticky-add-to-cart__bar {
     position: fixed;
     bottom: 20px;
