@@ -5,7 +5,7 @@
 
 {%- if section.settings.enable_free_shipping_bar and section.settings.free_shipping_threshold > 0 -%}
   {%- comment -%} cart.total_price is in cents; convert the settings value (dollars) to match. {%- endcomment -%}
-  {%- assign threshold_cents = settings.free_shipping_threshold | times: 100 -%}
+  {%- assign threshold_cents = section.settings.free_shipping_threshold | times: 100 -%}
   {%- assign remaining_cents = threshold_cents | minus: cart.total_price -%}
 
   <div class="cart-shipping-bar">
