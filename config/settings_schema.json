@@ -1495,18 +1495,6 @@
         "default": "default"
       },
       {
-        "type": "checkbox",
-        "id": "enable_free_shipping_bar",
-        "label": "t:settings.enable_free_shipping_bar.label",
-        "default": true
-      },
-      {
-        "type": "number",
-        "id": "free_shipping_threshold",
-        "label": "t:settings.free_shipping_threshold.label",
-        "default": 75
-      },
-      {
         "type": "select",
         "id": "cart_price_font",
         "label": "t:settings.font_price",

@@ -3,6 +3,20 @@
 
 {% schema %}
 {
-  "name": "t:names.cart_drawer"
+  "name": "t:names.cart_drawer",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_free_shipping_bar",
+      "label": "Show free shipping progress bar",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "free_shipping_threshold",
+      "label": "Free shipping threshold",
+      "default": 75
+    }
+  ]
 }
 {% endschema %}
