@@ -1205,7 +1205,13 @@
     "top_row_background": "Top row background",
     "top_row_text": "Top row text",
     "bottom_row_background": "Bottom row background",
-    "bottom_row_text": "Bottom row text"
+    "bottom_row_text": "Bottom row text",
+    "enable_free_shipping_bar": {
+    "label": "Show free shipping progress bar"
+    },
+    "free_shipping_threshold": {
+      "label": "Free shipping threshold ($)"
+    }
   },
   "text_defaults": {
     "accordion_heading": "Accordion heading",

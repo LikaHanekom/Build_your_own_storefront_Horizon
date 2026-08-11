@@ -1,0 +1,36 @@
+{%- comment -%}
+  Renders a free-shipping progress indicator for the cart drawer.
+  Guarded off entirely when disabled or the threshold is unset (0).
+{%- endcomment -%}
+
+{%- if settings.enable_free_shipping_bar and settings.free_shipping_threshold > 0 -%}
+  {%- comment -%} cart.total_price is in cents; convert the settings value (dollars) to match. {%- endcomment -%}
+  {%- assign threshold_cents = settings.free_shipping_threshold | times: 100 -%}
+  {%- assign remaining_cents = threshold_cents | minus: cart.total_price -%}
+
+  <div class="cart-shipping-bar">
+    {%- if remaining_cents > 0 -%}
+      {%- assign amount_remaining = remaining_cents | money -%}
+      <p class="cart-shipping-bar__message">You're {{ amount_remaining }} away from free shipping!</p>
+    {%- else -%}
+      <p class="cart-shipping-bar__message cart-shipping-bar__message--unlocked">You've unlocked free shipping!</p>
+    {%- endif -%}
+
+    {%- assign progress_ratio = cart.total_price | times: 1.0 | divided_by: threshold_cents -%}
+    {%- if progress_ratio > 1 -%}
+      {%- assign progress_ratio = 1 -%}
+    {%- endif -%}
+    {%- assign progress_percent = progress_ratio | times: 100 -%}
+
+    <div
+      class="cart-shipping-bar__track"
+      role="progressbar"
+      aria-valuenow="{{ progress_percent | round }}"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-label="{{ 'Free shipping progress' }}"
+    >
+      <div class="cart-shipping-bar__fill" style="width: {{ progress_percent }}%;"></div>
+    </div>
+  </div>
+{%- endif -%}

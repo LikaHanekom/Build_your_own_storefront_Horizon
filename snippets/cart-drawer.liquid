@@ -116,6 +116,7 @@
                 </scroll-hint>
 
                 <div class="cart-drawer__summary">
+                  {% render 'cart-shipping-bar' %}
                   {% render 'cart-summary', section_id: 'cart-drawer-section' %}
                 </div>
               </scroll-hint>
@@ -137,6 +138,32 @@
 {%- endif -%}
 
 {% stylesheet %}
+  .cart-shipping-bar {
+    margin-block-end: var(--gap-xl);
+  }
+
+  .cart-shipping-bar__message {
+    font-size: var(--font-size--sm, 0.875rem);
+    margin-block-end: var(--margin-3xs, 0.5rem);
+  }
+
+  .cart-shipping-bar__message--unlocked {
+    color: var(--color-foreground);
+    font-weight: var(--font-weight-bold, 600);
+  }
+
+  .cart-shipping-bar__track {
+    height: 6px;
+    border-radius: var(--radius-full, 999px);
+    background: rgb(var(--color-foreground-rgb) / var(--opacity-10-25));
+    overflow: hidden;
+  }
+
+  .cart-shipping-bar__fill {
+    height: 100%;
+    background: var(--color-foreground);
+    transition: width 0.3s ease;
+  }
   cart-drawer-component {
     --cart-drawer-padding: var(--theme-drawer-padding);
     --font-paragraph--line-height: 1;

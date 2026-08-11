@@ -296,6 +296,95 @@ All labels use sentence case (e.g. "Attribution name", not "Attribution Name" or
   git push
   ```
 
+# Day 5 — Cart, AJAX & Interactivity
+
+## Part 1 — Written Decisions (The Threshold & Messaging Plan)
+
+### Step 1.1 — Threshold Plan
+
+- **Setting id:** `enable_free_shipping_bar` (type: `checkbox`)
+- **Setting id:** `free_shipping_threshold` (type: `number`)
+- **Scope:** Global — added to `config/settings_schema.json`, inside the existing
+  `"name": "t:names.cart"` group.
+- **Reasoning:** Free shipping is a store-wide shipping/fulfillment policy, not a
+  presentation choice that should vary by section. If this were section-scoped, a
+  merchant could end up with the cart drawer promising free shipping at $75 while
+  the cart page (a different section) promises it at $50, even though both draw
+  from the exact same order and the exact same shipping policy. A single global
+  setting keeps the drawer and the cart page consistent, and matches how merchants
+  already think about "free shipping over $X" as one storefront-wide rule.
+- **Default value:** `75` (i.e. $75.00, a realistic free-shipping threshold, not a
+  placeholder number).
+- **Disable toggle:** `enable_free_shipping_bar` — a checkbox that lets a merchant
+  turn the entire feature off without deleting the threshold value they've configured
+  (so they can toggle it back on later without re-entering it).
+
+### Step 1.2 — Messaging Plan
+
+- **Short of threshold (remaining state):**
+  `You're {{ amount_remaining }} away from free shipping!`
+  — where `{{ amount_remaining }}` is the live dollar amount computed from
+  `cart.total_price` and `settings.free_shipping_threshold`, formatted with Liquid's
+  `money` filter (e.g. "You're $12.50 away from free shipping!").
+
+- **Threshold met (unlocked state):**
+  `You've unlocked free shipping!`
+
+- **Disabled or threshold = 0 fallback:**
+  The entire shipping-bar block — message and progress track together — does not
+  render at all. No empty wrapper `<div>`, no zero-width progress bar, nothing left
+  behind in the DOM. This is enforced with a single guard clause wrapping the whole
+  snippet:
+  `{%- if settings.enable_free_shipping_bar and settings.free_shipping_threshold > 0 -%}`
+  so that turning the setting off, or leaving the threshold at its unconfigured
+  default of 0, produces identical (nonexistent) output.
+
+### Step 1.3 — Integration Plan
+
+- **Target file:** `snippets/cart-shipping-bar.liquid` (new file), rendered from
+  inside `snippets/cart-drawer.liquid`, inside the `cart_items_children` capture
+  block's non-empty-cart branch — specifically just above the existing
+  `{% render 'cart-summary', section_id: 'cart-drawer-section' %}` line.
+
+- **Confirming it sits inside the re-rendered section:** In `cart-drawer.liquid`,
+  the `cart_items_children` capture is passed as the `children` param into:
+```liquid
+  {% render 'cart-items-component',
+    children: cart_items_children,
+    is_drawer: true,
+    section_id: 'cart-drawer-section'
+  %}
+```
+  This means my snippet's output becomes part of the children of
+  `<cart-items-component data-section-id="cart-drawer-section">`. In
+  `assets/component-cart-items.js`, the `sectionId` getter reads that exact
+  `data-section-id` attribute:
+```js
+  get sectionId() {
+    const { sectionId } = this.dataset;
+    if (!sectionId) throw new Error('Section id missing');
+    return sectionId;
+  }
+```
+  So the section id this component re-renders under is confirmed to be
+  `cart-drawer-section` — the same id my snippet is nested inside.
+
+- **Does this require new JavaScript?** No. On cart change, `#handleCartUpdate`
+  listens for `StandardEvents.cartLinesUpdate` on `document`, awaits the event's
+  `promise`, and reads `detail.sections[this.sectionId]` — i.e.
+  `sections['cart-drawer-section']` — off the cart-change response. If that HTML
+  fragment is present, it calls:
+```js
+  morphSection(this.sectionId, cartItemsHtml, morphOptions);
+```
+  which morphs the new server-rendered HTML (my shipping bar included, since it's
+  part of that section's output) directly into the existing DOM. Only if the
+  `sections` map is missing that key does it fall back to
+  `sectionRenderer.renderSection(this.sectionId, { cache: false, ...morphOptions })`
+  as a true Section Rendering API fetch. Either path re-renders the whole
+  `cart-drawer-section` fragment server-side and patches it into the DOM — since my
+  snippet lives inside that fragment, it updates automatically with no additional
+  fetch call, event listener, or custom element of my own.
 
 # Horizon
 
