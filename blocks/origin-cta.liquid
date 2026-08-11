@@ -1,7 +1,10 @@
 <div class="origin-cta" {{ block.shopify_attributes }}>
   {% if block.settings.cta_label != blank and block.settings.cta_link != blank %}
-    href="{{ block.settings.cta_link }}" class="origin-cta__button origin-cta__button--{{ block.settings.cta_style }}" >
-    {{ block.settings.cta_label }}
+    <a
+      href="{{ block.settings.cta_link }}"
+      class="origin-cta__button origin-cta__button--{{ block.settings.cta_style }}"
+    >
+      {{ block.settings.cta_label }}
     </a>
   {% endif %}
 
