@@ -1,8 +1,3 @@
-{%- comment -%}
-  Renders a free-shipping progress indicator for the cart drawer.
-  Guarded off entirely when disabled or the threshold is unset (0).
-{%- endcomment -%}
-
 {%- if section.settings.enable_free_shipping_bar and section.settings.free_shipping_threshold > 0 -%}
   {%- comment -%} cart.total_price is in cents; convert the settings value (dollars) to match. {%- endcomment -%}
   {%- assign threshold_cents = section.settings.free_shipping_threshold | times: 100 -%}
