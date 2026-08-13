@@ -1,6 +1,6 @@
 <div class="product-strength" {{ block.shopify_attributes }}>
-  {% assign altitude = section.settings.product.metafields.custom.altitude_meters %}
-  {% if altitude != blank %}
+  {% assign strength = section.settings.product.metafields.custom.strength_meters %}
+  {% if strength != blank %}
     <span class="product-strength__label">Strength</span>
     <span class="product-strength__value">{{ strength }}m</span>
   {% else %}
@@ -22,7 +22,7 @@
       "type": "text",
       "id": "strength_label",
       "label": "t:settings.origin_strength_label",
-      "default": "Altitude"
+      "default": "strength"
     },
     {
       "type": "text",
