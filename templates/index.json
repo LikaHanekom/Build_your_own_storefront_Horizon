@@ -323,8 +323,9 @@
       ],
       "name": "t:names.origin_spotlight",
       "settings": {
+        "color_scheme": "",
         "heading": "Our Origins",
-        "product": "the-collection-snowboard-liquid"
+        "product": "monday-dark-roast"
       }
     }
   },
