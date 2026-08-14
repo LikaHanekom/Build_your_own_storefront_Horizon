@@ -1,0 +1,40 @@
+<div class="product-strength" {{ block.shopify_attributes }}>
+  {% assign strength = section.settings.product.metafields.custom.strength_meters %}
+  {% if strength != blank %}
+    <span class="product-strength__label">Strength</span>
+    <span class="product-strength__value">{{ strength }}m</span>
+  {% else %}
+    {% if block.settings.strength_label != blank %}
+      <span class="product-strength__label">{{ block.settings.strength_label }}</span>
+    {% endif %}
+    {% if block.settings.strength_value != blank %}
+      <span class="product-strength__value">{{ block.settings.strength_value }}</span>
+    {% endif %}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:names.origin_strength",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "strength_label",
+      "label": "t:settings.origin_strength_label",
+      "default": "strength"
+    },
+    {
+      "type": "text",
+      "id": "strength_value",
+      "label": "t:settings.origin_strength_value",
+      "default": "1,800m"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.origin_strength"
+    }
+  ]
+}
+{% endschema %}

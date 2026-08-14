@@ -1,0 +1,55 @@
+<div class="growth-history" {{ block.shopify_attributes }}>
+  {% if block.settings.history_text != blank %}
+    <blockquote class="growth-history__text">
+      {{ block.settings.history_text }}
+    </blockquote>
+  {% endif %}
+
+  {% if block.settings.attribution_name != blank %}
+    <cite class="growth-history__attribution">
+      {{ block.settings.attribution_name }}
+      {%- if block.settings.attribution_farm != blank -%}
+        , {{ block.settings.attribution_farm }}
+      {%- endif -%}
+    </cite>
+  {% endif %}
+  {% assign origin_profile = section.settings.product.metafields.custom.merchandising_profile_reference %}
+  {% if origin_profile != blank %}
+    <div class="growth-history__profile">
+      <p class="growth-history__farm-name">{{ origin_profile.farm_name }}</p>
+      <div class="growth-history__harvest-notes">{{ origin_profile.harvest_notes | metafield_tag }}</div>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:names.origin_history",
+  "tag": null,
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "history_text",
+      "label": "t:settings.origin_history_text",
+      "default": "<p>Every harvest tells a story.</p>"
+    },
+    {
+      "type": "text",
+      "id": "attribution_name",
+      "label": "t:settings.origin_history_attribution_name",
+      "default": "Maria Gonzalez"
+    },
+    {
+      "type": "text",
+      "id": "attribution_farm",
+      "label": "t:settings.origin_history_attribution_farm",
+      "default": "Finca El Mirador"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.origin_history"
+    }
+  ]
+}
+{% endschema %}
