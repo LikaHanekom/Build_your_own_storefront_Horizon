@@ -386,6 +386,100 @@ All labels use sentence case (e.g. "Attribution name", not "Attribution Name" or
   snippet lives inside that fragment, it updates automatically with no additional
   fetch call, event listener, or custom element of my own.
 
+# Day 6 — Collections, Filtering & Merchandising
+
+## Filter & Swatch Plan
+
+### 1.1 — Collection & Filter Plan
+- **Collection:** `Week` (the collection holding Monday, Tuesday, Wednesday, Thursday roasts)
+- **Filter dimension 1:** List filter on a new **Roast Level** product option (Light / Medium / Dark)
+- **Filter dimension 2:** `price_range`
+- **Data gap:** None of the four products in `Week` currently have any option set up (each is a
+  single default variant), so there is nothing yet for a list filter or a swatch to attach to.
+  Wednesday – Espresso Roast needs a real **Roast Level** option added with three values
+  (Light, Medium, Dark) before the filter or swatches can appear. Additionally, all four
+  products are currently priced/marked sold out identically-configured — pricing needs to be
+  confirmed to vary across the collection, or `price_range` will render with a single-point
+  range and be functionally useless as a filter.
+- **Settings changed from default:**
+  - `enable_filtering`: **false → true** (this block ships disabled by default — filters will
+    not render at all until this is turned on)
+  - `filter_style`: **horizontal → vertical** (sidebar layout, better fits a 4-product grid)
+  - `enable_sorting`: left **on** (already true by default)
+
+### 1.2 — Swatch Plan
+- **Product:** Wednesday – Espresso Roast
+- **Option:** Roast Level
+- **Values / swatches:**
+  - Light — pale tan swatch
+  - Medium — medium brown swatch
+  - Dark — dark espresso-brown swatch
+- **Visible in:** both the collection grid card (`blocks/swatches.liquid`) and the product page
+  variant picker (`blocks/variant-picker.liquid`'s `show_swatches` setting).
+  `show_swatches` is already `true` by default on `variant-picker.liquid`, so no schema change
+  is needed there — only the swatch color values need to be assigned to the option values in
+  Admin. The `swatches.liquid` block already renders automatically once any option on the
+  product has a swatch assigned (`product_has_swatches` check), so it does not need new settings
+  either — just real swatch data.
+
+### 1.3 — Customization Plan
+- **File:** `blocks/filters.liquid`
+- **Edit:** Added a new CSS rule to the block's existing `{% stylesheet %}` targeting
+  `.facets--filters-title` (the "Filters" heading rendered next to the sort/count controls).
+- **Visible change:** The heading now renders in a coffee-brown (`#4b2e2e`) color with slight
+  letter-spacing instead of the theme's default foreground color, so it reads as on-brand for
+  The Roast Office rather than generic theme text.
+
+---
+
+## Configuration Notes
+
+- **Why no new section/block was created:** `sections/main-collection.liquid` already calls
+  `content_for 'block', type: 'filters', id: 'filters', results: collection, results_size: collection.products_count`
+  inside the collection wrapper grid — the filtering slot already exists and is already wired
+  to the collection's product results, so building a new section or block would duplicate
+  functionality that's already present and already correctly connected to `assets/facets.js`.
+- **Where swatch data comes from:** `blocks/swatches.liquid` reads
+  `product_option_value.swatch` directly off each product option's values
+  (`closest.product.options_with_values`). Swatch color/image data lives on the product option
+  values in Shopify Admin (Products → [product] → Options), not in the theme — the theme only
+  renders whatever swatch is assigned there via `snippets/variant-swatches.liquid`.
+- **Data change made:** Added a `Roast Level` option (Light / Medium / Dark) to
+  Wednesday – Espresso Roast in Admin, which created 3 real variants where there was previously
+  1 default variant.
+- **Filters block settings changed:** `enable_filtering` → true (filters were entirely hidden
+  before this), `filter_style` → vertical (sidebar layout for the small 4-item grid).
+
+## Customization Notes
+
+- File: `blocks/filters.liquid`
+- Selector: `.facets--filters-title`
+- Change: `color: #4b2e2e; letter-spacing: 0.04em;` added inside the block's existing
+  `{% stylesheet %}` tag.
+- Visible effect: the "Filters" label in the horizontal controls bar now renders in a
+  coffee-brown brand color with slightly spaced-out letters, instead of the theme default
+  foreground color.
+
+## Verification Notes
+
+_Complete this section after running `shopify theme dev` and testing at
+`http://127.0.0.1:9292`, per Part 3 of the assignment:_
+
+- [ ] Collection page loads with the filter panel and both Roast Level + Price filters visible
+      on first load, before any filter is applied.
+- [ ] Applying a filter and changing sort updates the grid and URL with **no full page reload**
+      (confirmed via DevTools → Network: a facets/fetch request, not a document navigation).
+- [ ] Copying the resulting filtered/sorted URL into a new tab reproduces the same view.
+- [ ] Clicking a Roast Level swatch on the Wednesday product's grid card updates the card
+      without navigating away.
+- [ ] Opening the Wednesday product page shows the same 3 swatches driving the variant picker,
+      and switching swatches updates price/media/availability correctly.
+- [ ] Pagination/infinite scroll still works on the collection.
+- [ ] Quick-add (if enabled) still works on a product that wasn't touched (Monday/Tuesday/Thursday).
+- [ ] A product with no swatches assigned (Monday, Tuesday, Thursday) still renders its card and
+      variant picker correctly, with no empty swatch row.
+- [ ] `shopify theme check` is clean on `blocks/filters.liquid`.
+
 # Horizon
 
 [Getting started](#getting-started) |
