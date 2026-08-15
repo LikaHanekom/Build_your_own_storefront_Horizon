@@ -112,7 +112,17 @@
       style="{% render 'spacing-style', settings: block_settings %}{% if block_settings.text_label_case == 'uppercase' %} --facet-label-transform: uppercase;{% endif %}"
     >
       {% if block_settings.enable_filtering %}
-        <h4 class="facets--filters-title">{{ 'content.filters' | t }}</h4>
+        <h4 class="facets--filters-title">
+          {{ 'content.filters' | t }}
+          {% if total_active_values > 0 %}
+            <span
+              class="facets__active-count-badge"
+              aria-label="{{ 'accessibility.filter_count' | t: count: total_active_values }}"
+            >
+              {{ total_active_values }}
+            </span>
+          {% endif %}
+        </h4>
       {% endif %}
 
       <div
@@ -1205,10 +1215,29 @@
     color: #4b2e2e;
     letter-spacing: 0.04em;
     height: fit-content;
+    display: flex;
+    align-items: center;
+    gap: var(--gap-2xs, 4px);
 
     @media screen and (max-width: 749px) {
       display: none;
     }
+  }
+
+  /* STRETCH A: badge showing total_active_values, reused from the block's
+     existing calculation above — no duplicate counting logic. */
+  .facets__active-count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding-inline: 4px;
+    border-radius: 999px;
+    background-color: #4b2e2e;
+    color: var(--color-background, #fff);
+    font-size: 11px;
+    line-height: 1;
   }
 
   .facets--horizontal .facets__panel .facets__status:has(:not(:empty)) {

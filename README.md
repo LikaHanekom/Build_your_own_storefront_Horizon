@@ -465,21 +465,42 @@ All labels use sentence case (e.g. "Attribution name", not "Attribution Name" or
 _Complete this section after running `shopify theme dev` and testing at
 `http://127.0.0.1:9292`, per Part 3 of the assignment:_
 
-- [ ] Collection page loads with the filter panel and both Roast Level + Price filters visible
+- [x] Collection page loads with the filter panel and both Roast Level + Price filters visible
       on first load, before any filter is applied.
-- [ ] Applying a filter and changing sort updates the grid and URL with **no full page reload**
+- [x] Applying a filter and changing sort updates the grid and URL with **no full page reload**
       (confirmed via DevTools → Network: a facets/fetch request, not a document navigation).
-- [ ] Copying the resulting filtered/sorted URL into a new tab reproduces the same view.
-- [ ] Clicking a Roast Level swatch on the Wednesday product's grid card updates the card
+- [x] Copying the resulting filtered/sorted URL into a new tab reproduces the same view.
+- [x] Clicking a Roast Level swatch on the Wednesday product's grid card updates the card
       without navigating away.
-- [ ] Opening the Wednesday product page shows the same 3 swatches driving the variant picker,
+- [x] Opening the Wednesday product page shows the same 3 swatches driving the variant picker,
       and switching swatches updates price/media/availability correctly.
-- [ ] Pagination/infinite scroll still works on the collection.
-- [ ] Quick-add (if enabled) still works on a product that wasn't touched (Monday/Tuesday/Thursday).
-- [ ] A product with no swatches assigned (Monday, Tuesday, Thursday) still renders its card and
+- [x] Pagination/infinite scroll still works on the collection.
+- [x] Quick-add (if enabled) still works on a product that wasn't touched (Monday/Tuesday/Thursday).
+- [x] A product with no swatches assigned (Monday, Tuesday, Thursday) still renders its card and
       variant picker correctly, with no empty swatch row.
-- [ ] `shopify theme check` is clean on `blocks/filters.liquid`.
+- [x] `shopify theme check` is clean on `blocks/filters.liquid`.
 
+
+## Stretch Goals
+
+### Stretch A — Active Filter Count Badge
+Added a small badge to `blocks/filters.liquid`, next to the "Filters" heading
+in the horizontal controls bar, showing how many filters are currently
+active. Reused the existing `total_active_values` variable, which the block
+already computes in its top-level `{% liquid %}` block (from the `for filter
+in filters` loop that runs before any HTML renders) — no duplicate counting
+logic was added. The badge is wrapped in `{% if total_active_values > 0 %}`,
+so it's absent entirely when no filters are applied, consistent with the
+theme's existing blank-state pattern used elsewhere in this file (e.g. the
+mobile toggle's `filter-count-bubble`).
+
+### Stretch B — Swatches Aren't Just Color
+Checked `snippets/variant-swatches.liquid`: it already exposes each swatch's
+option value name via `aria-label="{{ product_option_value.name }}"` on the
+underlying radio input, so a screen reader announces "Light", "Medium", or
+"Dark" regardless of the visual swatch color. No fix was needed — this was
+already implemented in the base theme, verified by inspecting the snippet
+rather than assumed.
 # Horizon
 
 [Getting started](#getting-started) |
