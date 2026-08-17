@@ -501,6 +501,49 @@ underlying radio input, so a screen reader announces "Light", "Medium", or
 "Dark" regardless of the visual swatch color. No fix was needed — this was
 already implemented in the base theme, verified by inspecting the snippet
 rather than assumed.
+
+# Assignment 7&8
+## Part 1 — Written Decisions (Audit & Deployment Plan)
+
+### Step 1.1 — Baseline Scores
+
+**shopify theme check (before, real run):**
+- 354 files inspected
+- 592 total offenses across 26 files
+- 570 errors
+- 22 warnings
+
+**Lighthouse — Homepage (before)** *(includes the Day 3 "Our Origins" custom section, which is placed on the homepage):*
+- Performance: 98
+- Accessibility: 90
+- Best Practices: 77
+- SEO: 85
+
+> Note: the assignment asks for scores on "your homepage and the custom section page you built on Day 3" — since the Day 3 section is embedded on the homepage rather than a separate page, one Lighthouse run covers both.
+
+### Step 1.2 — Fix Plan
+
+| # | File | Exact Flagged Problem | Planned Fix | Day |
+|---|------|------------------------|--------------|-----|
+| 1 | `locales/zh-TW.schema.json` | `MatchingTranslations` — missing keys `settings.product_custom_property.origin_spotlight_heading` and `origin_spotlight_background_image` | Copy English values from `en.default.schema.json` and add matching keys to the `zh-TW` file | Day 3/4 — Origin Spotlight section |
+| 2 | `locales/zh-TW.schema.json` | `MatchingTranslations` — missing keys `settings.enable_free_shipping_bar.label` and `settings.free_shipping_threshold.label` | Add matching translated keys, copying structure from the English default | Day 5 — cart free-shipping bar |
+| 3 | `sections/merchandise-spotlight.liquid` (line 14) and `sections/origin-spotlight.liquid` (line 14) | `ValidScopedCSSClass` — CSS class `page-width` may be defined outside the scope of this file | Confirm `page-width` is defined in a shared global stylesheet; document as accepted scope exception if so, otherwise scope locally | Day 3 — custom sections |
+| 4 | `snippets/cart-drawer.liquid` (line 119) | `UndefinedObject` — unknown object `section` used in `{% render 'cart-shipping-bar', section: section %}` | Update the parent that renders `cart-drawer.liquid` to explicitly pass `section: section` in, so it flows through to `cart-shipping-bar` | Day 5 — cart |
+
+> The remaining ~566 flagged errors are in stock Horizon files not touched during Days 1–6, and are out of scope per the assignment's instruction to fix only files personally built or edited.
+
+### Step 1.3 — Deployment Plan
+
+- **Target theme name:** `The Roast Office - Staging`
+- **Connection method:** Shopify Admin's GitHub integration (automatic sync) — chosen because it keeps the connected theme and repo branch synced automatically and gives a visible PR history in GitHub for review, without needing manual CLI pushes.
+- **Client-ready publishing checklist:**
+  1. No Lorem ipsum, TODO, or placeholder text visible anywhere a shopper can see it
+  2. All locale/translation keys resolve — no missing `zh-TW` strings surfacing as blank or fallback text
+  3. Cart drawer and free-shipping bar render correctly with no console errors on add-to-cart
+  4. Store isn't left password-protected when the client needs to preview it
+
+### Part 3
+- Connected via Admin's GitHub integration (Online Store → Themes → theme actions → Edit code → GitHub). Chosen because it auto-syncs the connected branch to a preview theme on every push, and gives PR history directly in GitHub for review — no manual shopify theme push needed for this deliverable.
 # Horizon
 
 [Getting started](#getting-started) |
