@@ -542,6 +542,8 @@ rather than assumed.
   3. Cart drawer and free-shipping bar render correctly with no console errors on add-to-cart
   4. Store isn't left password-protected when the client needs to preview it
 
+### Part 3
+- Connected via Admin's GitHub integration (Online Store → Themes → theme actions → Edit code → GitHub). Chosen because it auto-syncs the connected branch to a preview theme on every push, and gives PR history directly in GitHub for review — no manual shopify theme push needed for this deliverable.
 # Horizon
 
 [Getting started](#getting-started) |

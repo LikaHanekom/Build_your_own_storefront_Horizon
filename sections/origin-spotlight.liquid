@@ -127,6 +127,13 @@
     position: absolute;
     inset: 0;
     z-index: -1;
+    min-height: 400px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .origin-spotlight {
+      min-height: 320px;
+    }
   }
 
   .origin-spotlight__background img {
@@ -169,6 +176,46 @@
     .origin-spotlight__heading {
       font-size: var(--font-heading--size-mobile, 2rem);
     }
+
+    .origin-spotlight__content {
+      gap: var(--gap-md, 16px);
+      padding-block: var(--padding-lg, 24px);
+    }
+
+    .origin-spotlight__blocks {
+      gap: var(--gap-md, 16px);
+      max-width: 100%;
+    }
+
+    .origin-quote {
+      padding-block: var(--padding-2xs, 8px);
+      padding-left: var(--padding-sm, 12px);
+    }
+
+    .origin-quote__text {
+      font-size: var(--font-heading--size-mobile-small, 1.25rem);
+      overflow-wrap: break-word;
+    }
+
+    .origin-stat__value {
+      font-size: var(--font-heading--size-mobile-small, 1.25rem);
+    }
+
+    .origin-cta {
+      width: 100%;
+    }
+
+    .origin-cta__button {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .origin-spotlight__blocks,
+  .origin-quote__farm-name,
+  .origin-quote__harvest-notes {
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 {% endstylesheet %}
 
