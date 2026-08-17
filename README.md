@@ -597,9 +597,10 @@ Connected via Admin's GitHub integration (Online Store → Themes → theme acti
 ### Step 3.4 — Parity Confirmation
 Confirmed the named theme's preview link matches local `shopify theme dev` preview: Origin Spotlight section, cart drawer, and swatches all render identically. No missing translation strings visible in `zh-TW` locale preview after the fixes above.
 
-
+**Preview link:** https://the-roast-office.myshopify.com/
 
 **Supporting materials (screenshots, etc.):** https://drive.google.com/drive/folders/1ZrwZDrTKA-jf7jyK6GtcHGn-485tYnbi?usp=drive_link
+
 
 # Horizon
 
