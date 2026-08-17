@@ -2,6 +2,7 @@
   Renders reusable cart drawer markup for both initial page loads and Section Rendering API responses.
 
   @param {boolean} [render_wrapper] - When true, wraps the drawer in the section wrapper that the Section Rendering API adds automatically.
+  @param {object} [section] - The section object, passed through so nested snippets like cart-shipping-bar can access section settings.
 {% enddoc %}
 
 {%- liquid

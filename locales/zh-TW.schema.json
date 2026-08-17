@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "names": {
     "404": "404",
@@ -159,7 +168,14 @@
     "product_sku": "存貨單位 (SKU)",
     "layered_slideshow": "分層輪播",
     "cart_drawer": "購物車",
-    "disclosures": "資訊揭露"
+    "disclosures": "資訊揭露",
+    "origin_spotlight": "原產地聚焦",
+    "origin_stat": "原產地統計數據",
+    "origin_strength": "原產地統計數據",
+    "origin_quote": "原產地引言",
+    "origin_history": "產品歷史",
+    "origin_cta": "原產地行動呼籲",
+    "pull_history": "重點引言"
   },
   "settings": {
     "alignment": "對齊",
@@ -489,6 +505,31 @@
     "seller_note_open_by_default": "預設展開給賣家的備註",
     "add_to_cart_animation": "加入購物車",
     "custom_link": "自訂連結",
+    "origin_spotlight_heading": "標題",
+    "origin_spotlight_background_image": "背景圖片",
+    "origin_stat_label": "統計標籤",
+    "origin_stat_value": "統計數值",
+    "origin_strength_label": "統計標籤",
+    "origin_strength_value": "統計數值",
+    "origin_quote_text": "引言",
+    "origin_quote_attribution_name": "署名",
+    "origin_quote_attribution_farm": "署名農場",
+    "origin_history_text": "引言",
+    "origin_history_attribution_name": "署名",
+    "origin_history_attribution_farm": "署名農場",
+    "origin_cta_label": "按鈕標籤",
+    "origin_cta_link": "按鈕連結",
+    "origin_cta_style": "按鈕樣式",
+    "origin_cta_show_subtext": "顯示副文字",
+    "origin_cta_subtext": "副文字",
+    "origin_spotlight_product": "精選產品",
+    "origin_spotlight_product_info": "為海拔統計與原產地檔案區塊提供真實產品資料",
+    "enable_free_shipping_bar": {
+      "label": "顯示免運進度條"
+    },
+    "free_shipping_threshold": {
+      "label": "免運門檻金額 ($)"
+    },
     "product_custom_property": {
       "heading": "標題",
       "description": "說明",
@@ -510,7 +551,9 @@
       "heading_preset": "標題",
       "description_preset": "說明",
       "input_preset": "輸入欄位",
-      "checkbox_preset": "核取方塊標籤"
+      "checkbox_preset": "核取方塊標籤",
+      "origin_spotlight_heading": "標題",
+      "origin_spotlight_background_image": "背景圖片"
     },
     "blog": "網誌",
     "post_count": "文章數",
