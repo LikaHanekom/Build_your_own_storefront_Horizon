@@ -159,7 +159,15 @@
     "product_sku": "SKU",
     "layered_slideshow": "分层幻灯片",
     "cart_drawer": "购物车抽屉",
-    "disclosures": "披露信息"
+    "disclosures": "披露信息",
+    "origin_spotlight": "原产地聚焦",
+    "origin_stat": "原产地统计数据",
+    "origin_strength": "原产地统计数据",
+    "origin_quote": "原产地引言",
+    "origin_history": "产品历史",
+    "origin_cta": "原产地行动号召",
+    "pull_history": "引文",
+    "origin_profile": "原产地档案"
   },
   "settings": {
     "alignment": "对齐方式",
@@ -489,6 +497,32 @@
     "gift_card_form": "礼品卡表单",
     "add_to_cart_animation": "添加到购物车",
     "custom_link": "自定义链接",
+    "origin_spotlight_heading": "标题",
+    "origin_spotlight_background_image": "背景图片",
+    "origin_stat_label": "统计标签",
+    "origin_stat_value": "统计数值",
+    "origin_strength_label": "统计标签",
+    "origin_strength_value": "统计数值",
+    "origin_quote_text": "引言",
+    "origin_quote_attribution_name": "署名",
+    "origin_quote_attribution_farm": "署名农场",
+    "origin_history_text": "引言",
+    "origin_history_attribution_name": "署名",
+    "origin_history_attribution_farm": "署名农场",
+    "origin_cta_label": "按钮标签",
+    "origin_cta_link": "按钮链接",
+    "origin_cta_style": "按钮样式",
+    "origin_cta_show_subtext": "显示副文本",
+    "origin_cta_subtext": "副文本",
+    "origin_spotlight_product": "精选产品",
+    "origin_spotlight_product_info": "为海拔统计和原产地档案区块提供真实产品数据",
+    "origin_switcher_trigger_label": "触发按钮标签",
+    "enable_free_shipping_bar": {
+      "label": "显示包邮进度条"
+    },
+    "free_shipping_threshold": {
+      "label": "包邮门槛金额 ($)"
+    },
     "product_custom_property": {
       "heading": "标题",
       "description": "描述",
@@ -510,7 +544,9 @@
       "heading_preset": "标题",
       "description_preset": "描述",
       "input_preset": "输入",
-      "checkbox_preset": "复选框标签"
+      "checkbox_preset": "复选框标签",
+      "origin_spotlight_heading": "标题",
+      "origin_spotlight_background_image": "背景图片"
     },
     "blog": "博客",
     "post_count": "文章计数",
@@ -978,7 +1014,9 @@
     "gift_card_products": "礼品卡商品",
     "disclosures": "披露信息",
     "disclosures_metafield_content": "此产品所需的安全警告和监管披露信息。",
-    "page_text_color_contrast_info": "仅当颜色对比度足够时，具有自定义背景色的分区才会使用此文本颜色。"
+    "page_text_color_contrast_info": "仅当颜色对比度足够时，具有自定义背景色的分区才会使用此文本颜色。",
+    "origin_switcher_trigger_label_info": "如果留空，将显示产品标题。",
+    "origin_switcher_select_coffee": "选择一款咖啡以查看其原产地信息"
   },
   "html_defaults": {
     "share_information_about_your": "<p>与您的客户分享有关您品牌的信息。描述产品、发布公告或欢迎客户光临您的商店。</p>",
